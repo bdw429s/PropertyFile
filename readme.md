@@ -7,7 +7,7 @@
 To use, create an instance of `PropertyFile` and call the `load()` method with the full path to the file you wish to load.
 
 ```js
-var propertyFile = new propertyFile().load( expandPath( 'myFile.properties' ) );
+var propertyFile = getInstance( 'propertyFile' ).load( expandPath( 'myFile.properties' ) );
 ```
 
 ## Manipulate properties
