@@ -14,6 +14,7 @@ component accessors="true"{
 	 */
 	PropertyFile function init(){
 		setSyncedNames( [] );
+		setJavaPropertyFile( createObject( 'java', 'java.util.Properties' ).init() );
 		return this;
 	}
 	
@@ -23,12 +24,10 @@ component accessors="true"{
 	function load( required string path){
 		setPath( arguments.path );
 		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( path );
-		var propertyFile = CreateObject( 'java', 'java.util.Properties' ).init();
-		
+		var propertyFile = getJavaPropertyFile;
 		propertyFile.load( fis );
 		fis.close();
 		
-		setJavaPropertyFile( propertyFile );		
 		
 		var props = propertyFile.propertyNames();
 		var syncedNames = getSyncedNames();
