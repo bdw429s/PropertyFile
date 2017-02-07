@@ -127,7 +127,7 @@ component accessors="true"{
 	*/
 	private function syncProperties() {
 		var syncedNames = getSyncedNames();
-		var ignore = listToArray( 'init,load,store,get,set,exists,remove,exists,getAsStruct' );
+		var ignore = listToArray( 'init,load,store,get,set,exists,remove,exists,getAsStruct,$mixed' );
 		var propertyFile = getJavaPropertyFile();
 				
 		// This CFC's public properties
