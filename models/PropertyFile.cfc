@@ -48,6 +48,7 @@ component accessors="true"{
 		syncProperties();
 		
 		if( !fileExists( arguments.path ) ) {
+			directoryCreate( getDirectoryFromPath( arguments.path ), true, true );
 			fileWrite( arguments.path, '' );
 		}
 		
