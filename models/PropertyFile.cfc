@@ -47,6 +47,10 @@ component accessors="true"{
 	function store( string path=variables.path ){
 		syncProperties();
 		
+		if( !fileExists( arguments.path ) ) {
+			fileWrite( arguments.path, '' );
+		}
+		
 		var fos = CreateObject( 'java', 'java.io.FileOutputStream' ).init( arguments.path );
 		getJavaPropertyFile().store( fos, '' );
 		fos.close();
