@@ -24,7 +24,7 @@ component accessors="true"{
 	function load( required string path){
 		setPath( arguments.path );
 		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( path );
-		var propertyFile = getJavaPropertyFile;
+		var propertyFile = getJavaPropertyFile();
 		propertyFile.load( fis );
 		fis.close();
 		
