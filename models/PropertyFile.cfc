@@ -23,7 +23,7 @@ component accessors="true"{
 	*/
 	function load( required string path){
 		setPath( arguments.path );
-		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( path );
+		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( expandPath( path ) );
 		var propertyFile = getJavaPropertyFile();
 		propertyFile.load( fis );
 		fis.close();
@@ -52,7 +52,7 @@ component accessors="true"{
 			fileWrite( arguments.path, '' );
 		}
 		
-		var fos = CreateObject( 'java', 'java.io.FileOutputStream' ).init( arguments.path );
+		var fos = CreateObject( 'java', 'java.io.FileOutputStream' ).init( expandPath( arguments.path ) );
 		getJavaPropertyFile().store( fos, '' );
 		fos.close();
 		
