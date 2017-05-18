@@ -24,9 +24,10 @@ component accessors="true"{
 	function load( required string path){
 		setPath( arguments.path );
 		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( expandPath( path ) );
+		var BOMfis = CreateObject( 'java', 'org.apache.commons.io.input.BOMInputStream' ).init( fis );
 		var propertyFile = getJavaPropertyFile();
-		propertyFile.load( fis );
-		fis.close();
+		propertyFile.load( BOMfis );
+		BOMfis.close();
 		
 		
 		var props = propertyFile.propertyNames();
