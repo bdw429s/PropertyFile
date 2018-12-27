@@ -5,6 +5,7 @@ component accessors="true"{
 	
 	// Properties
 	property name='javaPropertyFile';
+	// A fully qualified path to a property file
 	property name='path';
 	property name='syncedNames';
 	
@@ -19,11 +20,11 @@ component accessors="true"{
 	}
 	
 	/**
-	* load
+	* @load A fully qualified path to a property file
 	*/
 	function load( required string path){
 		setPath( arguments.path );
-		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( expandPath( path ) );
+		var fis = CreateObject( 'java', 'java.io.FileInputStream' ).init( path );
 		var BOMfis = CreateObject( 'java', 'org.apache.commons.io.input.BOMInputStream' ).init( fis );
 		var propertyFile = getJavaPropertyFile();
 		propertyFile.load( BOMfis );
@@ -43,7 +44,7 @@ component accessors="true"{
 	}
 
 	/**
-	* store
+	* @load A fully qualified path to a property file.  File will be created if it doesn't exist.
 	*/
 	function store( string path=variables.path ){
 		syncProperties();
@@ -53,7 +54,7 @@ component accessors="true"{
 			fileWrite( arguments.path, '' );
 		}
 		
-		var fos = CreateObject( 'java', 'java.io.FileOutputStream' ).init( expandPath( arguments.path ) );
+		var fos = CreateObject( 'java', 'java.io.FileOutputStream' ).init( arguments.path );
 		getJavaPropertyFile().store( fos, '' );
 		fos.close();
 		
