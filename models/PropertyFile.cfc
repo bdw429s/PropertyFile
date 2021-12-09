@@ -123,6 +123,15 @@ component accessors="true"{
 		structAppend( result, getJavaPropertyFile() );
 		return result;
 	}
+
+	/**
+	* mergeStruct
+	*/
+	function mergeStruct( struct incomingStruct ){
+		structAppend( this, incomingStruct );
+		syncProperties();
+		return this;
+	}
 	
 	/**
 	* Keeps public properties in sync with Java object
