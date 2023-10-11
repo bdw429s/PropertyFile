@@ -129,7 +129,7 @@ component extends="testbox.system.BaseSpec" {
 				var propertyFile = new models.PropertyFile().load( expandPath( '/tests/resources/test.properties' ) );
 
 				propertyFile.store( expandPath( '/tests/tmp/test2.properties' ) )
-				expect( fileRead( expandPath( '/tests/tmp/test2.properties' ) ) ).toBe( fileRead( expandPath( '/tests/resources/test.properties' ) ) );
+				expect( fileReadNormalizedLF( expandPath( '/tests/tmp/test2.properties' ) ) ).toBe( fileReadNormalizedLF( expandPath( '/tests/resources/test.properties' ) ) );
 			} );
 
 			it( "can write novel property file", () => {
@@ -148,7 +148,7 @@ component extends="testbox.system.BaseSpec" {
 				propertyFile.set( 'aNativeWindowsPath', 'C:\My Documents\test' );
 
 				propertyFile.store( expandPath( '/tests/tmp/written.properties' ) )
-				expect( fileRead( expandPath( '/tests/tmp/written.properties' ) ) ).toBe( fileRead( expandPath( '/tests/resources/written-standard.properties' ) ) );
+				expect( fileReadNormalizedLF( expandPath( '/tests/tmp/written.properties' ) ) ).toBe( fileReadNormalizedLF( expandPath( '/tests/resources/written-standard.properties' ) ) );
 			} );
 
 			it( "can break lines", () => {
@@ -164,5 +164,15 @@ component extends="testbox.system.BaseSpec" {
 
 
 		} );
+	}
+
+	function fileReadNormalizedLF( path ) {
+		return fileRead( arguments.path )
+			// turn CRLF into LF
+			.replace( chr( 13 ) & chr( 10 ), chr( 10 ), 'all' )
+			// turn CR into LF
+			.replace( chr( 13 ), chr( 10 ), 'all' )
+			// Remove trailing whitespace
+			.trim();
 	}
 }

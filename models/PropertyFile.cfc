@@ -55,6 +55,14 @@ component accessors="true"{
 			line.value = contents;
 		// Contains a non-escaped : or =
 		} else {
+			// Look for the first = or : or <space> that is not escaped by a \
+			// unless it's a space immediatley followed by a = or :, in which case nevermind, use the = or :
+			// foo=bar
+			// foo:bar
+			// foo bar
+			// foo = bar
+			// foo : bar
+			// foo \bar=baz   -> kay name is "foo bar"
 			var delimSearch = contents.reFind( '[^\\](([=:])|([ ][^=:]))' );
 			if( delimSearch ) {
 				line['name'] = unEscapeToken( rtrim( contents.substring( 0, delimSearch ) ) );
