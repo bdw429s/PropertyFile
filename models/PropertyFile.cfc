@@ -29,7 +29,8 @@ component accessors="true"{
 		if( os contains 'win' ) {
 			setLineSeparator( chr( 13 ) & chr( 10 ) );
 		} else if( os contains 'mac' ) {
-			setLineSeparator( chr( 13 ) );
+			// Max OS X and on use LF instead of CR like the older macs used
+			setLineSeparator( chr( 10 ) );
 		} else {
 			setLineSeparator( chr( 10 ) );
 		}
