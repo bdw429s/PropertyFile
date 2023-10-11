@@ -40,7 +40,7 @@ component accessors="true"{
 	 * @contents Text from line
 	 * @lineNo Source line number
 	 */
-	private function addLine( required string contents, required number lineNo, required string originalLine ){
+	private function addLine( required string contents, required numeric lineNo, required string originalLine ){
 		var line = {
 			'type' : '',
 			'value' : ''
@@ -220,7 +220,7 @@ component accessors="true"{
 			// in case there was only whitespace after the last cut point, only cut if our cutpoint is not all the way to the end
 			if( cutPoint < len( text ) ) {
 				result &= prefix & text.left( cutPoint ) & '\' & lineSeparator;
-				text = text.mid( cutPoint + 1 );
+				text = text.mid( cutPoint + 1, len( text ) );
 				len = len( text ) + padding;
 			}
 		}
