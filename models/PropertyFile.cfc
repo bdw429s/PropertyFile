@@ -2,6 +2,8 @@
 * I am a transient representation of the contents of a property file .
 * Create a new version of me for separate property files.  I can be intercted with via
 * methods or public properties that represent the keys.
+*
+* https://fmpp.sourceforge.net/properties.html
 */
 component accessors="true"{
 
@@ -361,7 +363,7 @@ component accessors="true"{
 				s[l.name]=l.value;
 				return s;
 			},
-			{});
+			[:]);
 	}
 
 	/**
