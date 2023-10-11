@@ -21,7 +21,13 @@
     },
     "ignore":[
         "**/.*",
-        "test",
-        "tests"
-    ]
+        "/tests",
+        "/testbox"
+    ],
+    "devDependencies":{
+        "testbox":"^5.3.1+6"
+    },
+    "installPaths":{
+        "testbox":"testbox/"
+    }
 }
